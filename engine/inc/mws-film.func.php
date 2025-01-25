@@ -31,11 +31,42 @@ function readCovers() {
 }
 
 function isXfieldsOk() {
-	$handle = fopen( ENGINE_DIR . "/data/xfields.txt", "r");
-	$data = fread( $handle, filesize( ENGINE_DIR . "/data/xfields.txt" ) );
-	fclose( $handle );
-	return ( strpos( $data, "cover|" ) !== false && strpos( $data, "genre|" ) !== false && strpos( $data, "year|" ) !== false );
+    $file_path = ENGINE_DIR . "/data/xfields.txt";
+    
+    if (!file_exists($file_path)) {
+        error_log("Dosya mevcut değil: $file_path");
+        return false;
+    }
+    
+    if (!is_readable($file_path)) {
+        error_log("Dosya okunabilir değil: $file_path");
+        return false;
+    }
+    
+    $file_size = filesize($file_path);
+    
+    if ($file_size <= 0) {
+        error_log("Dosya boyutu sıfır veya negatif: $file_path");
+        return false;
+    }
+    
+    $handle = fopen($file_path, "r");
+    if ($handle === false) {
+        error_log("Dosya açılamadı: $file_path");
+        return false;
+    }
+    
+    $data = fread($handle, $file_size);
+    fclose($handle);
+    
+    if ($data === false) {
+        error_log("Dosya okunamadı: $file_path");
+        return false;
+    }
+    
+    return (strpos($data, "cover|") !== false && strpos($data, "genre|") !== false && strpos($data, "year|") !== false);
 }
+
 
 function isHtaccessOk() {
 	$handle = fopen( ROOT_DIR . "/.htaccess", "r");
@@ -45,31 +76,33 @@ function isHtaccessOk() {
 }
 
 function mainTable_head( $title, $right = "", $id = false ) {
-	if ( $id ) {
-		$id = " id=\"{$id}\"";
-		$style = " style=\"display:none\"";
-	} else { $style = ""; }
-	echo <<< HTML
-	<div class="panel panel-default">
-		<div class="panel-heading"{$id}{$style}>
-			<div style="float: left; margin-top: 5px;">
-				{$title}
-			</div>
-			<div style="float: right;">
-				{$right}
-			</div>
-			<div style="clear: both;"></div>
-		</div>
-		<div class="table-responsive">
-			<table class="table table-striped">
+    if ( $id ) {
+        $id = " id=\"{$id}\"";
+        $style = " style=\"display:none\"";
+    } else { 
+        $style = ""; 
+    }
+    echo <<< HTML
+    <div class="panel panel-default">
+        <div class="panel-heading"{$id}{$style}>
+            <div style="float: left; margin-top: 5px;">
+                {$title}
+            </div>
+            <div style="float: right;">
+                {$right}
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
 HTML;
 }
 
 function mainTable_foot() {
-	echo <<< HTML
-			</table>
-		</div>
-	</div>
+    echo <<< HTML
+            </table>
+        </div>
+    </div>
 HTML;
 }
 
@@ -82,20 +115,29 @@ function showRow( $title = "", $description = "", $field = "", $hide = false, $i
 	</tr>";
 }
 
-function showTSRow( $title = "", $conf = "" ) {
-	global $mws_film, $lng_inc;
+function showTSRow($title = "", $conf = "") {
+    global $mws_film, $lng_inc;
 
-	$control = ( in_array( $check, $tclist ) ) ? "<input type=\"checkbox\" class=\"switch\" size=\"10\" name=\"save[tclist][]\" value=\"{$check}\" checked />&nbsp;" : "<input type=\"checkbox\" name=\"save[tclist][]\" value=\"{$check}\" />&nbsp;";
-	$clist = de_serialize( $mws_film['tags'] ) ;
-	$tlist = de_serialize( $mws_film['tlink'] ) ;
-	$field_type = field_type( $title, $checked = $clist[$title] );
-	$field_alt = makeButton( "save[tlink][{$title}]", $tlist[$title] );
-	echo "
-	<tr>
-        <td class=\"col-xs-4 col-sm-4 col-md-4\"><b>{$title}</b> {$lng_inc['132']}</td>
-        <td class=\"col-xs-6 col-sm-6 col-md-6\">{$field_type}</td>
-        <td class=\"col-xs-2 col-sm-2 col-md-2\" valign=\"middle\">{$lng_inc['133']} &nbsp; {$field_alt}</td>
-	</tr>";
+    $tclist = de_serialize($mws_film['tclist']) ?: [];
+    $check = $title;
+
+    // $tclist'in bir dizi olup olmadığını kontrol edin
+    if (!is_array($tclist)) {
+        $tclist = [];
+    }
+
+    $control = in_array($check, $tclist) ? "<input type=\"checkbox\" class=\"switch\" size=\"10\" name=\"save[tclist][]\" value=\"{$check}\" checked />&nbsp;" : "<input type=\"checkbox\" name=\"save[tclist][]\" value=\"{$check}\" />&nbsp;";
+    $clist = de_serialize($mws_film['tags']) ?: [];
+    $tlist = de_serialize($mws_film['tlink']) ?: [];
+    $field_type = field_type($title, $clist[$title] ?? '');
+    $field_alt = makeButton("save[tlink][{$title}]", $tlist[$title] ?? '');
+    echo <<<HTML
+    <tr>
+        <td class="col-xs-4 col-sm-4 col-md-4"><b>{$title}</b> {$lng_inc['132']}</td>
+        <td class="col-xs-6 col-sm-6 col-md-6">{$field_type}</td>
+        <td class="col-xs-2 col-sm-2 col-md-2" valign="middle">{$lng_inc['133']} &nbsp; {$field_alt}</td>
+    </tr>
+HTML;
 }
 
 function showXFRow($title = "", $description = "", $field = "", $check = "", $tcheck = "") {
