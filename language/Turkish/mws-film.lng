@@ -209,7 +209,20 @@ $lng_inc = array(
 	'213'   => "Gerekli ilave alan kodlarının xfields.txt dosyasına eklenmesi için:",
 	'214'   => "İstek sistemi için gerekli yönlendirme kodlarının .htaccess dosyasına eklenmesi için:",
 	'215'   => "buraya tıklayın",
+    '216'   => "TMDB API Key",
+    '217'   => "TMDB API key - The Movie Database üzerinden API key alabilirsiniz.",
+    '218'   => "OMDb API Key",
+    '219'   => "OMDb API key - The Open Movie Database üzerinden API key alabilirsiniz.",
+    '220'   => "IMDb Rating",
+    '221'   => "IMDb rating değeri",
+    '222'   => "Rotten Tomatoes Rating",
+    '223'   => "Rotten Tomatoes rating değeri",
+    '224'   => "Metacritic Rating",
+    '225'   => "Metacritic rating değeri",
+    '226'   => "IMDb Votes",
+    '227'   => "IMDb oylama sayısı"
 );
+
 
 
 $lng_site = array(
@@ -235,7 +248,7 @@ $lng_site = array(
 	'error_13'			=> "Henüz hiç film isteği yapılmadı.",
 	'readimg_desc'		=> "Resmin bulunduğu sayfa linkini yazın",
 
-	'xfields'			=> "year|Film Yılı||text||1|0\nurl|Film URL||text||1|0\ndirector|Film Yönetmeni||text||1|0\nscreenman|Görüntü Yönetmeni||text||1|0|0|0\nwriters|Film Yazarları||text||1|0\nstars|Film Başrol Oyuncuları||text||1|0\nstory|Film Özeti||text||1|0\nbest|En iyi oy||text||1|0\nrating|Film Derecelendirmesi||text||1|0\nvotes|Film Oy Sayısı||text||1|0\ngenre|Film Türü||text||1|0\ncountry|Film'in Çekildiği Ülke||text||1|0\nlanguage|Film Dili||text||1|0\nsoundtracks|Film Müzikleri||text||1|0|0|0\ntime|Film Süresi||text||1|0\nvision|Film Vizyon Tarihi||text||1|0\naspect|Film En Boy Oranı||text||1|0\nbudget|Film Bütçesi||text||1|0\nsound|Film Sesi Teknolojisi||text||1|0\ncolor|Film Renklendirmesi||text||1|0\ncover|Film Kapak Resmi||text||1|0\nslogan|Film Sloganı||text||1|0\nlocations|Film Çekildiği Yerler||text||1|0\nauthor|Film Yapımcısı||text||1|0\nproductionfirm|Yapımcı Firma||text||1|0|0|0\nlocalname|Filmin Yerel Adı||text||1|0\ntrailer|Trailer||text||1|0|0|0\ntrailer_mobile|Trailer (Mobil)||text||1|0|0|0\nscreens|Ekran Görüntüleri||textarea||1|0|0|0"
+	'xfields' => "year|Film Yılı||text||1|0\nurl|Film URL||text||1|0\ndirector|Film Yönetmeni||text||1|0\nscreenman|Görüntü Yönetmeni||text||1|0|0|0\nwriters|Film Yazarları||text||1|0\nstars|Film Başrol Oyuncuları||text||1|0\nstory|Film Özeti||text||1|0\nbest|En iyi oy||text||1|0\nrating|Film Derecelendirmesi||text||1|0\nvotes|Film Oy Sayısı||text||1|0\ngenre|Film Türü||text||1|0\ncountry|Film'in Çekildiği Ülke||text||1|0\nlanguage|Film Dili||text||1|0\nsoundtracks|Film Müzikleri||text||1|0|0|0\ntime|Film Süresi||text||1|0\nvision|Film Vizyon Tarihi||text||1|0\naspect|Film En Boy Oranı||text||1|0\nbudget|Film Bütçesi||text||1|0\nsound|Film Sesi Teknolojisi||text||1|0\ncolor|Film Renklendirmesi||text||1|0\ncover|Film Kapak Resmi||text||1|0\nslogan|Film Sloganı||text||1|0\nlocations|Film Çekildiği Yerler||text||1|0\nauthor|Film Yapımcısı||text||1|0\nproductionfirm|Yapımcı Firma||text||1|0|0|0\nlocalname|Filmin Yerel Adı||text||1|0\ntrailer|Trailer||text||1|0|0|0\ntrailer_mobile|Trailer (Mobil)||text||1|0|0|0\nscreens|Ekran Görüntüleri||textarea||1|0|0|0\nimdb_rating|IMDb Rating||text||1|0|0|0|||0|0||||||||||||||||0|||||\nrotten_tomatoes_rating|Rotten Tomatoes Rating||text||1|0|0|0|||0|0||||||||||||||||0|||||\nmetacritic_rating|Metacritic Rating||text||1|0|0|0|||0|0||||||||||||||||0|||||\nimdb_votes|IMDb Votes||text||1|0|0|0|||0|0||||||||||||||||0|||||"
 );
 
 
