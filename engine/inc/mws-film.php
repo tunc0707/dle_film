@@ -417,7 +417,18 @@ HTML;
 			), "save[rating_sep]", "{$mws_film['rating_sep']}"
 		)
 	);
+    
+	showRow(
+    $lng_inc['216'],
+    $lng_inc['217'],
+    "<input type=\"text\" class=\"form-control\" size=\"50\" name=\"save[tmdb_api_key]\" value=\"{$mws_film['tmdb_api_key']}\">"
+    );
 
+    showRow(
+    $lng_inc['218'],
+    $lng_inc['219'],
+    "<input type=\"text\" class=\"form-control\" size=\"50\" name=\"save[omdb_api_key]\" value=\"{$mws_film['omdb_api_key']}\">"
+    );
 	closeTab();
 
 
@@ -652,6 +663,30 @@ HTML;
 		$lng_inc['73'].$lng_inc['19'],
 		makeDropDown($xfields,"save[film_trailer_mobil]", $mws_film['film_trailer_mobil'], True)
 	);
+	
+showXFRow(
+    $lng_inc['220'], // IMDb Rating başlığı
+    $lng_inc['220'].$lng_inc['19'], // IMDb Rating açıklaması
+    makeDropDown($xfields, "save[imdb_rating]", $mws_film['imdb_rating'], True)
+);
+
+showXFRow(
+    $lng_inc['222'], // Rotten Tomatoes Rating başlığı
+    $lng_inc['222'].$lng_inc['19'], // Rotten Tomatoes Rating açıklaması
+    makeDropDown($xfields, "save[rotten_tomatoes_rating]", $mws_film['rotten_tomatoes_rating'], True)
+);
+
+showXFRow(
+    $lng_inc['224'], // Metacritic Rating başlığı
+    $lng_inc['224'].$lng_inc['19'], // Metacritic Rating açıklaması
+    makeDropDown($xfields, "save[metacritic_rating]", $mws_film['metacritic_rating'], True)
+);
+
+showXFRow(
+    $lng_inc['226'], // IMDb Votes başlığı
+    $lng_inc['226'].$lng_inc['19'], // IMDb Votes açıklaması
+    makeDropDown($xfields, "save[imdb_votes]", $mws_film['imdb_votes'], True)
+);
 	hiddenRow("save[film_type]", "type");
 	hiddenRow("save[film_seasons]", "seasons");
 	hiddenRow("save[film_season_count]", "season_count");
